@@ -1,0 +1,26 @@
+
+emailpage_valid:
+ txtEmail: validemail@email.com
+
+passwordpage_valid:
+ txtPassword: validpassword
+
+
+emailpage_invalid:
+ txtEmail: invalidemail@email.com
+
+passwordpage_invalid:
+ txtPassword: invalidpassword
+
+
+emailpage_existent:
+ txtEmail: validuser
+
+passwordpage_existent:
+ txtPassword: validpassword
+
+emailpage_firstaccess:
+ txtEmail: firstaccess@email.com
+
+passwordpage_firstaccess:
+ txtPassword: firstaccesspassword

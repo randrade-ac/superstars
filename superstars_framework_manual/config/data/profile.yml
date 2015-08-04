@@ -1,0 +1,31 @@
+valid_about:
+ txtAbout: "test about me"
+
+valid_summary:
+ txtSummary: "test summary"
+
+clean_about:
+ txtAbout: ""
+
+clean_summary:
+ txtSummary: ""
+
+valid_education:
+ txtEducSchool: "University 1"
+ txtEducStartDate: "01/01/2001"
+ txtEducEndDate: "01/01/2004"
+ txtDegree: "Degree 1"
+ txtField: "Field 1"
+ txtActivities: "Activities 1"
+
+valid_certificationExpires:
+ txtCertName: "Certification 1"
+ txtCertAuthority: "Authority 1"
+ txtEducStartDate: "01/01/2010"
+ txtEducEndDate: "01/01/2013"
+ # radioCert: 1
+
+valid_certificationNonExpires:
+ txtCertName: "Certification 2"
+ txtCertAuthority: "Authority 2"
+ txtEducStartDate: "01/01/2010"

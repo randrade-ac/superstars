@@ -1,0 +1,15 @@
+source 'https://rubygems.org'
+
+gem 'cucumber'
+
+gem 'watir-webdriver'
+
+gem 'page-object'
+
+gem 'rspec'
+
+gem 'selenium-webdriver'
+
+gem 'data_magic'
+
+gem 'rspec-expectations'

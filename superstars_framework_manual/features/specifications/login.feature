@@ -14,9 +14,3 @@ Scenario: Do fail login
 Given I am on SuperStars LoginPage
 When I do the Login with invalid data
 Then I can not see SuperStars HomePage
-
-
-Scenario: Fill profile
-Given I am on SuperStars ProfilePage
-When I fill in the page with valid data
-Then I can see the information saved

@@ -27,6 +27,7 @@ accept_button_element.wait_until { accept_button_element.visible?}
 
 		sleep(2)
 		self.btnLogin
+		DataMagic.load "login.yml"
 	end
 
 	def openLoginPage
@@ -35,14 +36,16 @@ accept_button_element.wait_until { accept_button_element.visible?}
 
 	def fillEmail option
 
-		if (option.eql?("valid"))
-			populate_page_with data_for "login/emailpage_valid"
-		elsif (option.eql?("invalid"))
-			populate_page_with data_for "login/emailpage_invalid"		
-		elsif (option.eql?("existent"))
-			populate_page_with data_for "login/emailpage_existent"		
-		elsif (option.eql?("first_acess"))
-			populate_page_with data_for "login/emailpage_firstaccess"		
+		puts Login::VALID
+
+		if (option.eql?(Login::VALID))
+			populate_page_with data_for "emailpage_valid"
+		elsif (option.eql?(Login::INVALID))
+			populate_page_with data_for "emailpage_invalid"		
+		elsif (option.eql?(Login::EXISTENT))
+			populate_page_with data_for "emailpage_existent"		
+		elsif (option.eql?(Login::FIRST_ACCESS))
+			populate_page_with data_for "emailpage_firstaccess"		
 		end
 
 		self.btnNext
@@ -50,14 +53,14 @@ accept_button_element.wait_until { accept_button_element.visible?}
 
 	def fillPassword option
 		sleep(2)
-		if (option.eql?("valid"))
-			populate_page_with data_for "login/passwordpage_valid"
-		elsif (option.eql?("invalid"))
-			populate_page_with data_for "login/passwordpage_invalid"
-		elsif (option.eql?("existent"))
-			populate_page_with data_for "login/passwordpage_existent"
-		elsif (option.eql?("first_acess"))
-			populate_page_with data_for "login/passwordpage_firstaccess"
+		if (option.eql?(Login::VALID))
+			populate_page_with data_for "passwordpage_valid"
+		elsif (option.eql?(Login::INVALID))
+			populate_page_with data_for "passwordpage_invalid"
+		elsif (option.eql?(Login::EXISTENT))
+			populate_page_with data_for "passwordpage_existent"
+		elsif (option.eql?(Login::FIRST_ACCESS))
+			populate_page_with data_for "passwordpage_firstaccess"
 		end
 
 		self.btnSingin

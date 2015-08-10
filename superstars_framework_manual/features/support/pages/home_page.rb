@@ -16,20 +16,19 @@ include RSpec::Matchers
 
 
 
-	def verifyHomePage (option, first_access)
+	def verifyHomePage (option, isFirst_access)
 		
 		if (self.completeProfile?)
-			if (option.eql?("skipCompleteProfile"))
+			if (option.eql?(Profile::SKIPCOMPLETEPROFILE))
 				skipCompleteProfile
-				verifyCookies "ac-superstars-first-home-access", first_access
-			elsif (option.eql?("doCompleteProfile"))
+				verifyCookies "ac-superstars-first-home-access", isFirst_access
+			elsif (option.eql?(Profile::DOCOMPLETEPROFILE))
 				skipCompletePosition
 				doCompleteProfile
 			end
-		elsif (option.eql?("shown"))
+		elsif (option.eql?(Profile::SHOWNHOMEPAGE))
 			self.HomePage
-			#verifyCookies "ac-superstars-first-home-access", "false"
-			verifyCookies "ac-superstars-first-home-access", first_access
+			verifyCookies "ac-superstars-first-home-access", isFirst_access
 		else
 			self.HomePage?
 		end
@@ -57,9 +56,9 @@ include RSpec::Matchers
 		verifyEditProfilePage true
 	end
 
-	def verifyEditProfilePage visible
+	def verifyEditProfilePage isVisible
 		sleep(2)
-		if (visible)
+		if (isVisible)
 			self.editProfileTitle
 		else
 			self.editProfileTitle?

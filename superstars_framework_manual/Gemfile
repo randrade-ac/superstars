@@ -13,3 +13,5 @@ gem 'selenium-webdriver'
 gem 'data_magic'
 
 gem 'rspec-expectations'
+
+gem 'activerecord'

@@ -1,0 +1,12 @@
+TODO's
+
+** Melhorar click no radiobutton e no checkbox de Education/Certification
+
+** Preencher campos de data pelo datepicker
+
+** Deletar 1 e todas Education/Certification
+
+** Deletar 1 e todas Experience
+
+** Investigar pq o click na div de stars, clica em 3 stars
+

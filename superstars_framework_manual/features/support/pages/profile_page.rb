@@ -26,14 +26,31 @@ include DataMagic
 	text_field(:txtField, :xpath => '//div[5]/md-input-container/input')
 	textarea(:txtActivities, :xpath => '//div[6]/md-input-container/textarea')
 
-	# radio_button(:radioCertification, :class => 'ng-pristine ng-untouched ng-valid md-default-theme', :index => 1)
-	# radio_button(:radioCertification, :class => 'ng-pristine ng-untouched ng-valid md-default-theme')
 	text_field(:txtCertName, :xpath => '//div[2]/form/div[2]/md-input-container/input')
 	text_field(:txtCertAuthority, :xpath => '//div[3]/md-input-container/input')
-	text_field(:txtCertStartDate, :xpath => '//div[4]/md-input-container/p/input')
-	text_field(:txtCertEndDate, :xpath => '//div/p/input')
+	text_field(:txtCertStartDate, :name => 'certificationStartDate')
+	text_field(:txtCertEndDate, :name => 'certificationEndDate')
 	
-	checkbox(:ckbCertNotExpires, :xpath => '//md-checkbox/div')
+	link(:lnkAddNewExperience, :css => 'div.box.container-fluids > div.ng-isolate-scope > div > div > p.add-new-element.ng-binding')
+	text_field(:txtPosition, :xpath => '//div[3]/form/div[2]/md-input-container/input')
+	text_field(:txtCompany, :xpath => '//div[3]/form/div[3]/md-input-container/input')
+	text_field(:txtExpeStartDate, :name => 'startDate')
+	text_field(:txtExpeEndDate, :xpath => '//div[6]/md-input-container[2]/div/p/input')
+	textarea(:txtActivityDescription, :xpath => '//div[8]/md-input-container/textarea')
+	button(:btnSaveExperience, :xpath => '//div[9]/p/button')
+
+	text_field(:txtTwitter, :xpath => '//div[2]/div[2]/md-input-container/input')
+	text_field(:txtFacebook, :xpath => '//div[3]/div[2]/md-input-container/input')
+	text_field(:txtLinkedIn, :xpath => '//div[4]/div[2]/md-input-container/input')
+
+	link(:lnkAddNewSkill, :css => 'div.skills-header > p.add-new-element.ng-binding')
+	text_field(:txtSkill, :xpath => '//span/md-input-container/input')
+	text_field(:txtExpertise, :xpath => '//md-content/div/md-input-container/input')
+	
+	button(:btnSaveSkill, :xpath => '//div[2]/form/div/p/button')
+	
+	div(:divStars, :class => 'skill-level icons')
+
 		
 	
 	def openProfilePage
@@ -43,15 +60,19 @@ include DataMagic
 
 	def fillFields
 		sleep(2)
-		fillAbout
-		fillSummary
-		fillEducCert "education"
+		DataMagic.load "profile.yml"
+		# fillAbout
+		# fillSummary
+		# fillEducCert "education"
 		# fillEducCert "certificationExpires"
 		# fillEducCert "certificationNonExpires"
-
+		# fillExperience
+		# fillSocialNetwork
+		fillSkill
 
 	end
 
+	#TODO avaliar necessidade
 	def cleanFields
 		sleep(2)
 		cleanAbout
@@ -60,22 +81,22 @@ include DataMagic
 	end
 
 	def fillAbout
-		populate_page_with data_for "profile/valid_about"
+		populate_page_with data_for "valid_about"
 		self.btnSaveAbout
 	end
 
 	def cleanAbout
-		populate_page_with data_for "profile/clean_about"
+		populate_page_with data_for "clean_about"
 		self.btnSaveAbout
 	end
 
 	def fillSummary
-		populate_page_with data_for "profile/valid_summary"
+		populate_page_with data_for "valid_summary"
 		self.btnSaveSummary
 	end
 
 	def cleanSummary
-		populate_page_with data_for "profile/clean_summary"
+		populate_page_with data_for "clean_summary"
 		self.btnSaveSummary
 	end
 
@@ -86,18 +107,19 @@ include DataMagic
 		sleep(2)
 
 		if (option.eql?("education"))
-			populate_page_with data_for "profile/valid_education"
+			populate_page_with data_for "valid_education"
 
 		elsif (option.eql?("certificationExpires"))
 			
-			# browser.radio_button(:xpath => '//md-radio-button[2]/div/div').set
-			# select_radioCertification
+			clickCertification
+			populate_page_with data_for "valid_certificationExpires"
 
-			populate_page_with data_for "profile/valid_certificationExpires"
 		elsif (option.eql?("certificationNonExpires"))
-			
-			populate_page_with data_for "profile/valid_certificationNonExpires"
-			self.ckbCertNotExpires
+
+			clickCertification
+			populate_page_with data_for "valid_certificationNonExpires"
+			clickCertificationNonExpires
+
 		end		
 		
 		sleep(2)
@@ -106,6 +128,50 @@ include DataMagic
 
 	end
 
+	def clickCertification
+		#TODO esta não é uma boa prática de teste; no entanto, o elemento no sistema é um 
+		#"<md-radio-button>" ao invés de "<input type='radio'>". Sendo assim, a forma 
+		#mais simples foi chamar o "element" diretamente no momento.
+		#Para pensar: quando usei link com xpath ele pediu o <a>; quando usei link com css ele deu certo.
+		#verificar se eu chamar por outro atributo funciona.
 
+		@browser.element(:xpath => '//md-radio-button[2]/div/div').click
 
+	end
+
+	def clickCertificationNonExpires
+		#TODO esta não é uma boa prática de teste; no entanto, o elemento no sistema é um 
+		#"<md-checkbox" ao invés de "<checkbox>". Sendo assim, a forma 
+		#mais simples foi chamar o "element" diretamente no momento.
+		#Para pensar: quando usei link com xpath ele pediu o <a>; quando usei link com css ele deu certo.
+		#verificar se eu chamar por outro atributo funciona.
+
+		@browser.element(:xpath => '//md-checkbox/div').click
+	end
+
+	def fillExperience
+		self.lnkAddNewExperience
+		populate_page_with data_for "valid_experience"
+		self.btnSaveExperience
+	end
+
+	def fillSocialNetwork
+		populate_page_with data_for "valid_socialNetwork"
+	end
+
+	def fillSkill
+		lnkAddNewSkill
+		populate_page_with data_for "valid_skill"
+
+		@browser.div(:class => 'skill-level icons').click
+		sleep(2)
+
+		self.btnSaveSkill
+	end
+
+	def verifyData
+		#TODO
+	end
 end
+
+

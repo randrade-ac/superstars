@@ -21,11 +21,26 @@ valid_education:
 valid_certificationExpires:
  txtCertName: "Certification 1"
  txtCertAuthority: "Authority 1"
- txtEducStartDate: "01/01/2010"
- txtEducEndDate: "01/01/2013"
- # radioCert: 1
+ txtCertStartDate: "01/01/2010"
+ txtCertEndDate: "01/01/2013"
 
 valid_certificationNonExpires:
  txtCertName: "Certification 2"
  txtCertAuthority: "Authority 2"
- txtEducStartDate: "01/01/2010"
+ txtCertStartDate: "01/01/2010"
+
+valid_experience:
+ txtPosition: "Position 1"
+ txtCompany: "Company 1"
+ txtExpeStartDate: "01/01/2004"
+ txtExpeEndDate: "01/01/2008"
+ txtActivityDescription: "Activities 1"
+
+valid_socialNetwork:
+ txtTwitter: "raptatinha"
+ txtFacebook: "renatinha.andrade.9"
+ txtLinkedIn: "renata-andrade/29/b69/662"
+
+valid_skill:
+ txtSkill: "Java"
+ txtExpertise: "2"

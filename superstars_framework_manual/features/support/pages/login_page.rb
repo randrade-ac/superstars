@@ -22,9 +22,9 @@ include DataMagic
 =begin
 atualizar o sleep	
 accept_button_element.wait_until { accept_button_element.visible?}
-	
 =end
 
+		# Watir::Wait.until{ @browse.button(:class, 'btn btn-lg btn-primary btn-block signin-btn ng-binding').exists? }
 		sleep(2)
 		self.btnLogin
 		DataMagic.load "login.yml"

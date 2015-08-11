@@ -61,14 +61,21 @@ include DataMagic
 	def fillFields
 		sleep(2)
 		DataMagic.load "profile.yml"
-		# fillAbout
+		fillAbout
+		sleep(2)
 		# fillSummary
-		# fillEducCert "education"
-		# fillEducCert "certificationExpires"
-		# fillEducCert "certificationNonExpires"
+		# sleep(2)
+		# fillEducCert EducationCertification::EDUCATION
+		# sleep(2)
+		# fillEducCert EducationCertification::CERTIFICATIONEXPIRES
+		# sleep(2)
+		# fillEducCert EducationCertification::CERTIFICATIONNONEXPIRES
+		# sleep(2)
 		# fillExperience
+		# sleep(2)
 		# fillSocialNetwork
-		fillSkill
+		# sleep(2)
+		# fillSkill
 
 	end
 
@@ -77,7 +84,6 @@ include DataMagic
 		sleep(2)
 		cleanAbout
 		cleanSummary
-		#cleanEducCert
 	end
 
 	def fillAbout
@@ -106,15 +112,15 @@ include DataMagic
 		self.lnkAddNewEducCert
 		sleep(2)
 
-		if (option.eql?("education"))
+		if (option.eql?(EducationCertification::EDUCATION))
 			populate_page_with data_for "valid_education"
 
-		elsif (option.eql?("certificationExpires"))
+		elsif (option.eql?(EducationCertification::CERTIFICATIONEXPIRES))
 			
 			clickCertification
 			populate_page_with data_for "valid_certificationExpires"
 
-		elsif (option.eql?("certificationNonExpires"))
+		elsif (option.eql?(EducationCertification::CERTIFICATIONNONEXPIRES))
 
 			clickCertification
 			populate_page_with data_for "valid_certificationNonExpires"

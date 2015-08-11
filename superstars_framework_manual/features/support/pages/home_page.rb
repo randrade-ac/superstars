@@ -68,9 +68,6 @@ include RSpec::Matchers
 	def verifyCookies (name, value)
 		cookies = browser.cookies.to_a
 
-		# if (cookies.find {|cookie| cookie.Name == name} != nil)
-		# 	puts cookies.find {|cookie| cookie.Name == name}
-		# end
 		found = "false"
 
 		cookies.each do |cookie|
